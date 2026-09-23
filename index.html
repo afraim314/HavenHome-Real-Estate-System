@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="HavenHome Solutions connects buyers and sellers across Bangladesh with trusted real estate listings, agents, and support.">
+    <meta name="keywords" content="HavenHome Solutions, real estate, Dhaka, Bangladesh, properties, apartments, villas, agents, homes">
+    <meta name="author" content="HavenHome Solutions">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.havenhomesolutions.com/index.html">
+    <meta property="og:title" content="HavenHome Solutions — Find Your Perfect Property">
+    <meta property="og:description" content="Explore modern homes, apartments, and land in Bangladesh with HavenHome Solutions.">
+    <meta property="og:url" content="https://www.havenhomesolutions.com/index.html">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1560518883-ce09059eeffc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80">
+    <title> HavenHome- Find Your Perfect Property</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Glass effect styles for index page */
+        body {
+            background: transparent;
+            min-height: 100vh;
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.014)), url('https://images.unsplash.com/photo-1560518883-ce09059eeffc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(13, 216, 138, 0);
+            backdrop-filter: blur(1px);
+            -webkit-backdrop-filter: blur(1px);
+        }
+        
+        .search-container {
+            background: transparent;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        .advanced-search {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .search-group {
+            position: relative;
+        }
+        
+        .search-group i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #09cc8b;
+            z-index: 2;
+        }
+        
+        .search-group input,
+        .search-group select {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 2.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.65);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
+            color: #0f172a;
+            font-size: 1rem;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        .search-group select option {
+            color: #0f172a;
+            background: white;
+        }
+        
+        .search-group input::placeholder {
+            color: rgba(15, 23, 42, 0.6);
+        }
+        
+        .search-btn {
+            width: 100%;
+            padding: 0.75rem;
+            background: rgba(9, 204, 139, 0.9);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        .search-btn:hover {
+            background: rgba(9, 204, 139, 0.95);
+            transform: translateY(-2px);
+        }
+        
+        /* Featured Properties Glass Effect */
+        .featured-properties {
+            padding: 5rem 0;
+            background: rgba(255, 255, 255, 0.02);
+        }
+        
+        .featured-properties h2 {
+            color: #d8dee7a9;
+            margin-bottom: 1rem;
+        }
+        
+        .properties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .property-card {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .property-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .property-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .property-info {
+            padding: 1.5rem;
+        }
+        
+        .property-title {
+            font-size: 1.2rem;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+        
+        .property-price {
+            font-size: 1.1rem;
+            color: #09cc9b;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        
+        .property-location {
+            color: #6b7280;
+            margin-bottom: 1rem;
+        }
+        
+        .property-details {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .property-details span {
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(9, 204, 145, 0.9);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: background 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: rgba(9, 204, 155, 0.95);
+        }
+        
+        /* Why Choose Us Glass Effect */
+        .why-choose-us {
+            padding: 5rem 0;
+            background: transparent;
+        }
+        
+        .why-choose-us h2 {
+            color: #09cc8b;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .feature {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .feature:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature i {
+            font-size: 3rem;
+            color: #09cc9b;
+            margin-bottom: 1rem;
+        }
+        
+        .feature h3 {
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+        
+        .feature p {
+            color: #6b7280;
+            line-height: 1.6;
+        }
+
+        .property-highlights {
+            padding: 5rem 0;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .highlight-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 1.75rem;
+            align-items: start;
+            margin-top: 2rem;
+            justify-items: stretch;
+        }
+
+        .highlight-image,
+        .highlight-text {
+            width: 100%;
+        }
+
+        .highlight-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 25px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .highlight-text {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .section-label {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(110, 9, 204, 0.15);
+            color: #09cc9b;
+            font-weight: 700;
+            border-radius: 999px;
+            font-size: 0.85rem;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+        }
+
+        .highlight-text h2 {
+            font-size: 2.5rem;
+            color: #111827;
+            line-height: 1.05;
+        }
+
+        .highlight-text p {
+            color: #4b5563;
+            line-height: 1.8;
+            max-width: 620px;
+        }
+
+        .highlight-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
+        }
+
+        .highlight-card {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            padding: 1.3rem;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+        }
+
+        .highlight-card i {
+            font-size: 1.5rem;
+            color: #09cc9b;
+            margin-top: 0.2rem;
+        }
+
+        .highlight-card h3 {
+            font-size: 1.1rem;
+            color: #111827;
+            margin-bottom: 0.35rem;
+        }
+
+        .highlight-card p {
+            color: #6b7280;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 900px) {
+            .highlight-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .highlight-list {
+                grid-template-columns: 1fr;
+            }
+
+            .highlight-text h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-home"></i>
+                <span>HavenHome Solutions</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="properties.html">Properties</a></li>
+                <li><a href="agent.html">Agents</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="admin-login.html" class="login-btn">Login/Register</a></li>
+            </ul>
+            
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Find Your Dream Home Today</h1>
+            <p>Discover the perfect property that matches your lifestyle and budget</p>
+            
+            <!-- Advanced Search Bar -->
+            <div class="search-container">
+                <form id="searchForm" class="advanced-search">
+                    <div class="search-group">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <input type="text" placeholder="Location" id="location">
+                    </div>
+                    <div class="search-group">
+                        <select id="propertyType">
+                            <option value="">Property Type</option>
+                            <option value="apartment">Apartment</option>
+                            <option value="house">House</option>
+                            <option value="villa">Villa</option>
+                            <option value="land">Land</option>
+                        </select>
+                    </div>
+                    <div class="search-group">
+                        <select id="priceRange">
+                            <option value="">Price Range</option>
+                            <option value="0-100000">TK0 - TK10,00,000</option>
+                            <option value="100000-300000">TK30,00,000 - TK50,00,000</option>
+                            <option value="300000-500000">TK100,00,000 - TK500,00,000</option>
+                            <option value="500000+">TK500,00,000+</option>
+                        </select>
+                    </div>
+                    <div class="search-group">
+                        <select id="bedrooms">
+                            <option value="">Bedrooms</option>
+                            <option value="1">1+</option>
+                            <option value="2">2+</option>
+                            <option value="3">3+</option>
+                            <option value="4">4+</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="search-btn">Search</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Property Highlights -->
+    <section class="property-highlights">
+        <div class="container">
+            <div class="highlight-grid">
+                <div class="highlight-image">
+                    <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1200&q=80" alt="Beautiful modern property exterior">
+                </div>
+                <div class="highlight-text">
+                    <span class="section-label">Property Features</span>
+                    <h2>Discover modern homes with exceptional comfort and style</h2>
+                    <p>From carefully selected locations to premium finishes and smart layouts, our properties are designed to support every stage of life. Whether you are searching for your first home, an investment property, or a family residence, enjoy a seamless experience with trusted listings across Dhaka.</p>
+                    <div class="highlight-list">
+                        <div class="highlight-card">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h3>Verified listings</h3>
+                                <p>Every property is vetted by our team for accuracy and quality.</p>
+                            </div>
+                        </div>
+                        <div class="highlight-card">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h3>Modern amenities</h3>
+                                <p>Find homes with smart designs, safety features, and premium comfort.</p>
+                            </div>
+                        </div>
+                        <div class="highlight-card">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h3>Prime locations</h3>
+                                <p>Choose from top neighborhoods with access to schools, shopping, and transit.</p>
+                            </div>
+                        </div>
+                        <div class="highlight-card">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h3>Flexible budgets</h3>
+                                <p>Properties across a wide range of prices, from starter homes to luxury villas.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="why-choose-us">
+        <div class="container">
+            <h2>Why Choose Us</h2>
+            <div class="features-grid">
+                <div class="feature">
+                    <i class="fas fa-user-tie"></i>
+                    <h3>Trusted Agents</h3>
+                    <p>Experienced and licensed real estate professionals</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-check-circle"></i>
+                    <h3>Verified Listings</h3>
+                    <p>100% verified properties with authentic details</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Secure Transactions</h3>
+                    <p>Safe and transparent buying/selling process</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-headset"></i>
+                    <h3>24/7 Support</h3>
+                    <p>Round-the-clock customer assistance</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>HavenHome Solutions</h3>
+                    <p>Your trusted partner in finding the perfect home for you👌🏠🏠</p>
+                    <p><a href="https://www.havenhomesolutions.com" target="_blank" rel="noopener">www.havenhomesolutions.com</a></p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="properties.html">Properties</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Uttara, Dhaka 1230, Bangladesh</p>
+                    <p><i class="fas fa-phone"></i> +8801819453547</p>
+                    <p><i class="fas fa-envelope"></i> info@havenhomesolutions.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 HavenHome Solutions. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>

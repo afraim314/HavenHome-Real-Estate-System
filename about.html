@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn about HavenHome Solutions — the Bangladesh real estate platform helping families and investors find homes and properties.">
+    <meta name="keywords" content="HavenHome Solutions, about us, real estate, Bangladesh, property experts, trusted agents">
+    <meta name="author" content="HavenHome Solutions">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.havenhomesolutions.com/about.html">
+    <meta property="og:title" content="About HavenHome Solutions — Bangladesh Real Estate Experts">
+    <meta property="og:description" content="Discover the story and mission behind HavenHome Solutions, your trusted real estate partner in Bangladesh.">
+    <meta property="og:url" content="https://www.havenhomesolutions.com/about.html">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab">
+    <title>About Us - HavenHome Solutions </title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* About page specific styles */
+        .about-page {
+            margin-top: 80px;
+            background: rgba(255, 255, 255, 0.06);
+            min-height: calc(100vh - 80px);
+            backdrop-filter: blur(10px);
+        }
+        
+        /* Hero Section */
+        .about-hero {
+            background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab');
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+        
+        .about-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .about-hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        /* Company Overview */
+        .company-overview {
+            padding: 4rem 0;
+            background: white;
+        }
+        
+        .overview-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .overview-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #10d684;
+        }
+        
+        .overview-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #13d192;
+            margin-bottom: 1rem;
+        }
+        
+        /* Mission & Vision */
+        .mission-vision {
+            padding: 4rem 0;
+            background: #d1f2eb;
+        }
+        
+        .mv-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        
+        .mv-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .mv-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .mv-icon {
+            width: 80px;
+            height: 80px;
+            background: #09cc8b;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .mv-icon i {
+            font-size: 2rem;
+            color: white;
+        }
+        
+        .mv-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        
+        .mv-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        /* Team Section */
+        .team-section {
+            padding: 4rem 0;
+            background: white;
+        }
+        
+        .team-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .team-member {
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .team-member:hover {
+            transform: translateY(-10px);
+        }
+        
+        .member-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .member-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .member-social {
+            position: absolute;
+            bottom: -50px;
+            left: 0;
+            right: 0;
+            background: rgba(9, 204, 139, 0.9);
+            padding: 0.5rem;
+            transition: bottom 0.3s;
+        }
+        
+        .team-member:hover .member-social {
+            bottom: 0;
+        }
+        
+        .member-social a {
+            color: white;
+            margin: 0 0.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .team-member h3 {
+            margin-top: 1rem;
+            font-size: 1.25rem;
+            color: #333;
+        }
+        
+        .team-member p {
+            color: #666;
+            margin-top: 0.25rem;
+        }
+        
+        /* Achievements Section */
+        .achievements {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #09cc8b 0%, #07b377 100%);
+            color: white;
+        }
+        
+        .achievements h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        /* Values Section */
+        .values-section {
+            padding: 4rem 0;
+            background: white;
+        }
+        
+        .values-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .value-card {
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .value-icon {
+            width: 70px;
+            height: 70px;
+            background: #d1f2eb;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+        }
+        
+        .value-icon i {
+            font-size: 1.75rem;
+            color: #09cc8b;
+        }
+        
+        .value-card h3 {
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+        
+        .value-card p {
+            color: #666;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            padding: 4rem 0;
+            background: #d1f2eb;
+            text-align: center;
+        }
+        
+        .cta-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        
+        .cta-section p {
+            color: #666;
+            margin-bottom: 2rem;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: #09cc8b;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        
+        .cta-button:hover {
+            background: #07b377;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .mv-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-home"></i>
+                <span>HavenHome Solutions</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="properties.html">Properties</a></li>
+                <li><a href="agent.html">Agents</a></li>
+                <li><a href="about.html" class="active">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="admin-login.html" class="login-btn">Login/Register</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- About Page Content -->
+    <div class="about-page">
+        <!-- Hero Section -->
+        <div class="about-hero">
+            <div class="container">
+                <h1>About HavenHome Solutions</h1>
+                <p>Your trusted partner in real estate since 2010</p>
+            </div>
+        </div>
+        
+        <!-- Company Overview -->
+        <div class="company-overview">
+            <div class="container">
+                <div class="overview-content">
+                    <h2>Who We Are</h2>
+                    <p>HavenHome Solutions is a leading real estate platform dedicated to helping people find their perfect home. With over a decade of experience in the industry, we've helped thousands of families and individuals find properties that match their lifestyle, budget, and dreams.</p>
+                    <p>Our team of experienced real estate professionals is committed to providing exceptional service, expert guidance, and transparent transactions. Whether you're buying, selling, or renting, we're here to make your real estate journey smooth and successful.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mission & Vision -->
+        <div class="mission-vision">
+            <div class="container">
+                <div class="mv-grid">
+                    <div class="mv-card">
+                        <div class="mv-icon">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <h3>Our Mission</h3>
+                        <p>To simplify the real estate journey by providing innovative technology, expert guidance, and personalized service, helping every client find a place they can truly call home.</p>
+                    </div>
+                    <div class="mv-card">
+                        <div class="mv-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <h3>Our Vision</h3>
+                        <p>To become the most trusted and innovative real estate platform globally, revolutionizing how people buy, sell, and invest in properties through technology and exceptional service.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Team Section -->
+        <div class="team-section">
+            <div class="container">
+                <h2>Meet Our Leadership Team</h2>
+                <div class="team-grid">
+                    <div class="team-member">
+                        <div class="member-image">
+                            <img src="https://image2url.com/r2/default/images/1775504252328-47687525-6d60-4d86-9c1b-3d4a0eb3a2f8.jpeg" alt="Samid Hossain">
+                            <div class="member-social">
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                            </div>
+                        </div>
+                        <h3>Samid Hossain</h3>
+                        <p>CEO & Founder</p>
+                        <p style="font-size: 0.9rem; margin-top: 0.5rem;">10+ years in real estate</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-image">
+                            <img src="https://image2url.com/r2/default/images/1775504684382-8667bc61-9738-43b3-9ac3-a3568b79273c.jpeg" alt="Tanjim Sarkar">
+                            <div class="member-social">
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                            </div>
+                        </div>
+                        <h3>Tanjim Sarkar</h3>
+                        <p>Head of Operations</p>
+                        <p style="font-size: 0.9rem; margin-top: 0.5rem;">8+ years experience</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-image">
+                            <img src="https://image2url.com/r2/default/images/1775504724513-8b35ddaa-6cdb-4121-8a95-617951659b64.jpg" alt="Afraim Md.Monir">
+                            <div class="member-social">
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                            </div>
+                        </div>
+                        <h3>Afraim Md.Monir</h3>
+                        <p>Head of Sales</p>
+                        <p style="font-size: 0.9rem; margin-top: 0.5rem;">Top performer since 2020</p>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        
+        <!-- Achievements -->
+        <div class="achievements">
+            <div class="container">
+                <h2>Our Achievements</h2>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number" id="yearsExperience">10+</div>
+                        <div class="stat-label">Years of Experience</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="propertiesSold">5000+</div>
+                        <div class="stat-label">Properties Sold</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="happyClients">8000+</div>
+                        <div class="stat-label">Happy Clients</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="expertAgents">50+</div>
+                        <div class="stat-label">Expert Agents</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Our Values -->
+        <div class="values-section">
+            <div class="container">
+                <h2>Our Core Values</h2>
+                <div class="values-grid">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h3>Integrity</h3>
+                        <p>We conduct business with honesty, transparency, and ethical practices.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h3>Excellence</h3>
+                        <p>We strive for excellence in everything we do, from service to results.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Client First</h3>
+                        <p>Our clients' needs and satisfaction are our top priority.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h3>Innovation</h3>
+                        <p>We embrace technology and innovation to serve you better.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Call to Action -->
+        <div class="cta-section">
+            <div class="container">
+                <h2>Ready to Find Your Dream Home?</h2>
+                <p>Let us help you make your real estate dreams a reality.</p>
+                <a href="properties.html" class="cta-button">Browse Properties</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>HavenHome Solutions</h3>
+                    <p>Your trusted partner in finding the perfect home</p>
+                    <p><a href="https://www.havenhomesolutions.com" target="_blank" rel="noopener">www.havenhomesolutions.com</a></p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="properties.html">Properties</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Uttara, Dhaka 1230, Bangladesh</p>
+                    <p><i class="fas fa-phone"></i> +8801819453547</p>
+                    <p><i class="fas fa-envelope"></i> info@havenhomesolutions.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 HavenHome Solutions. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Counter animation for statistics
+        function animateCounter(element, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const value = Math.floor(progress * (end - start) + start);
+                element.textContent = value.toLocaleString() + (element.id === 'yearsExperience' ? '+' : '+');
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+        
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: "0px"
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const yearsElement = document.getElementById('yearsExperience');
+                    const propertiesElement = document.getElementById('propertiesSold');
+                    const clientsElement = document.getElementById('happyClients');
+                    const agentsElement = document.getElementById('expertAgents');
+                    
+                    if (yearsElement && yearsElement.textContent === '10+') {
+                        animateCounter(yearsElement, 0, 10, 2000);
+                    }
+                    if (propertiesElement && propertiesElement.textContent === '5000+') {
+                        animateCounter(propertiesElement, 0, 5000, 2000);
+                    }
+                    if (clientsElement && clientsElement.textContent === '8000+') {
+                        animateCounter(clientsElement, 0, 8000, 2000);
+                    }
+                    if (agentsElement && agentsElement.textContent === '50+') {
+                        animateCounter(agentsElement, 0, 50, 2000);
+                    }
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        
+        // Observe the achievements section
+        const achievementsSection = document.querySelector('.achievements');
+        if (achievementsSection) {
+            observer.observe(achievementsSection);
+        }
+        
+        // Add animation classes to elements as they come into view
+        const fadeElements = document.querySelectorAll('.mv-card, .team-member, .value-card');
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-up');
+                    fadeObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        fadeElements.forEach(el => fadeObserver.observe(el));
+        
+        // Mobile menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        hamburger?.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

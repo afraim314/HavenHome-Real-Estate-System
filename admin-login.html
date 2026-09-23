@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Access HavenHome Solutions admin and customer login, or register to manage property inquiries and account settings.">
+    <meta name="keywords" content="HavenHome Solutions, login, register, real estate dashboard, property account">
+    <meta name="author" content="HavenHome Solutions">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.havenhomesolutions.com/admin-login.html">
+    <meta property="og:title" content="HavenHome Solutions Login/Register">
+    <meta property="og:description" content="Sign in or register with HavenHome Solutions to manage property inquiries and agent contacts.">
+    <meta property="og:url" content="https://www.havenhomesolutions.com/admin-login.html">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1573497019414-5c177c1de7a5?auto=format&fit=crop&w=1950&q=80">
+    <title>Login/Register - HavenHome Solutions</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Auth Page Specific Styles */
+        .auth-page {
+            margin-top: 80px;
+            min-height: calc(100vh - 80px);
+            background: rgba(252, 234, 234, 0.788);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 0;
+        }
+        
+        .auth-container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .auth-wrapper {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 600px;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Left Side - Info Section */
+        .auth-info {
+          
+            background:transparent;
+            color: rgb(0, 8, 5);
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .auth-info h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .auth-info p {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .info-features {
+            list-style: none;
+            margin-top: 2rem;
+        }
+        
+        .info-features li {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .info-features i {
+            font-size: 1.2rem;
+        }
+        
+        .testimonial {
+            margin-top: 2rem;
+            padding: 1rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            font-style: italic;
+        }
+        
+        .testimonial-author {
+            margin-top: 0.5rem;
+            font-weight: bold;
+            color: #080808;
+        }
+        
+        /* Right Side - Forms */
+        .auth-forms {
+            padding: 3rem;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        .form-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #e5e7eb;
+        }
+        
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: #666;
+            position: relative;
+        }
+        
+        .tab-btn.active {
+            color: #09cc8b;
+            font-weight: bold;
+        }
+        
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #09cc8b;
+        }
+        
+        .form-container {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .form-container.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: 500;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #09cc8b;
+            box-shadow: 0 0 0 3px rgba(9, 204, 139, 0.1);
+        }
+        
+        .form-group input.error {
+            border-color: #ef4444;
+        }
+        
+        .error-message {
+            color: #ef4444;
+            font-size: 0.85rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+        
+        .error-message.show {
+            display: block;
+        }
+        
+        .password-toggle {
+            position: absolute;
+            right: 1rem;
+            top: 70%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #999;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .checkbox-group input {
+            width: auto;
+            cursor: pointer;
+        }
+        
+        .checkbox-group label {
+            margin-bottom: 0;
+            cursor: pointer;
+            color: #333;
+        }
+        
+        .forgot-password {
+            text-align: right;
+            margin-bottom: 1.5rem;
+        }
+        
+        .forgot-password a {
+            color: #09cc8b;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 0.75rem;
+            background: #09cc8b;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .submit-btn:hover {
+            background: #07b377;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(9, 204, 139, 0.3);
+        }
+        
+        .submit-btn:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .social-login {
+            margin-top: 2rem;
+            text-align: center;
+        }
+        
+        .social-login p {
+            color: #666;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+        
+        .social-login p::before,
+        .social-login p::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 30%;
+            height: 1px;
+            background: #e5e7eb;
+        }
+        
+        .social-login p::before {
+            left: 0;
+        }
+        
+        .social-login p::after {
+            right: 0;
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            text-decoration: none;
+            color: white;
+        }
+        
+        .social-icon.google {
+            background: #db4437;
+        }
+        
+        .social-icon.facebook {
+            background: #4267b2;
+        }
+        
+        .social-icon.twitter {
+            background: #1da1f2;
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        /* Alert Messages */
+        .alert {
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            animation: slideIn 0.3s ease;
+        }
+        
+        .alert-success {
+            background: #d1fae5;
+            color: #065f46;
+            border: 1px solid #a7f3d0;
+        }
+        
+        .alert-error {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #fecaca;
+        }
+        
+        .alert-info {
+            background: #dbeafe;
+            color: #1e40af;
+            border: 1px solid #bfdbfe;
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        /* Loading Spinner */
+        .spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid white;
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 0.6s linear infinite;
+            margin-right: 0.5rem;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .auth-wrapper {
+                grid-template-columns: 1fr;
+            }
+            
+            .auth-info {
+                padding: 2rem;
+                text-align: center;
+            }
+            
+            .info-features {
+                text-align: left;
+            }
+            
+            .auth-forms {
+                padding: 2rem;
+            }
+            
+            .form-tabs {
+                justify-content: center;
+            }
+        }
+        
+        /* Password Strength Indicator */
+        .password-strength {
+            margin-top: 0.5rem;
+            height: 4px;
+            background: #e5e7eb;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        
+        .strength-bar {
+            height: 100%;
+            width: 0;
+            transition: width 0.3s, background 0.3s;
+        }
+        
+        .strength-text {
+            font-size: 0.75rem;
+            margin-top: 0.25rem;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-home"></i>
+                <span>HavenHome Solutions</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="properties.html">Properties</a></li>
+                <li><a href="agent.html">Agents</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="admin-login.html" class="login-btn active">Login/Register</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Auth Page Content -->
+    <div class="auth-page">
+        <div class="auth-container">
+            <div class="auth-wrapper">
+                <!-- Left Side - Information -->
+                <div class="auth-info">
+                    <h2>Welcome to Haven Home Solutions</h2>
+                    <p>Join our community of happy homeowners and real estate investors.</p>
+                    
+                    <ul class="info-features">
+                        <li><i class="fas fa-check-circle"></i> Access exclusive property listings</li>
+                        <li><i class="fas fa-heart"></i> Save your favorite properties</li>
+                        <li><i class="fas fa-bell"></i> Get price drop alerts</li>
+                        <li><i class="fas fa-chart-line"></i> Track market trends</li>
+                        <li><i class="fas fa-envelope"></i> Direct contact with agents</li>
+                    </ul>
+                    
+                    <div class="testimonial">
+                        <i class="fas fa-quote-left"></i>
+                        <p>Haven Home Solutions helped me find my dream home in just 2 weeks! The platform is amazing and the agents are very professional.</p>
+                        <div class="testimonial-author">Samid Hossain - Haven Home Solutions</div>
+                    </div>
+                </div>
+                
+                <!-- Right Side - Forms -->
+                <div class="auth-forms">
+                    <div class="form-tabs">
+                        <button class="tab-btn active" data-form="login">Login</button>
+                        <button class="tab-btn" data-form="register">Register</button>
+                    </div>
+                    
+                    <!-- Login Form -->
+                    <div id="loginForm" class="form-container active">
+                        <form id="login">
+                            <div class="form-group">
+                                <label for="loginEmail">Email Address</label>
+                                <input type="email" id="loginEmail" name="email" required>
+                                <div class="error-message" id="loginEmailError">Please enter a valid email</div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="loginPassword">Password</label>
+                                <input type="password" id="loginPassword" name="password" required>
+                                <i class="fas fa-eye password-toggle" onclick="togglePassword('loginPassword', this)"></i>
+                                <div class="error-message" id="loginPasswordError">Password is required</div>
+                            </div>
+                            
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="rememberMe">
+                                <label for="rememberMe">Remember me</label>
+                            </div>
+                            
+                            <div class="forgot-password">
+                                <a href="#" onclick="showForgotPassword()">Forgot Password?</a>
+                            </div>
+                            
+                            <button type="submit" class="submit-btn">Login</button>
+                        </form>
+                        
+                        <div class="social-login">
+                            <p>Or login with</p>
+                            <div class="social-icons">
+                                <a href="#" class="social-icon google" onclick="socialLogin('google')">
+                                    <i class="fab fa-google"></i>
+                                </a>
+                                <a href="#" class="social-icon facebook" onclick="socialLogin('facebook')">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="social-icon twitter" onclick="socialLogin('twitter')">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Register Form -->
+                    <div id="registerForm" class="form-container">
+                        <form id="register">
+                            <div class="form-group">
+                                <label for="regName">Full Name</label>
+                                <input type="text" id="regName" name="name" required>
+                                <div class="error-message" id="regNameError">Please enter your full name</div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="regEmail">Email Address</label>
+                                <input type="email" id="regEmail" name="email" required>
+                                <div class="error-message" id="regEmailError">Please enter a valid email</div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="regPhone">Phone Number (Optional)</label>
+                                <input type="tel" id="regPhone" name="phone">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="regPassword">Password</label>
+                                <input type="password" id="regPassword" name="password" required>
+                                <i class="fas fa-eye password-toggle" onclick="togglePassword('regPassword', this)"></i>
+                                <div class="password-strength">
+                                    <div class="strength-bar" id="strengthBar"></div>
+                                </div>
+                                <div class="strength-text" id="strengthText"></div>
+                                <div class="error-message" id="regPasswordError">Password must be at least 6 characters</div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="regConfirmPassword">Confirm Password</label>
+                                <input type="password" id="regConfirmPassword" required>
+                                <i class="fas fa-eye password-toggle" onclick="togglePassword('regConfirmPassword', this)"></i>
+                                <div class="error-message" id="regConfirmError">Passwords do not match</div>
+                            </div>
+                            
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="termsCheckbox" required>
+                                <label for="termsCheckbox">I agree to the <a href="#" onclick="showTerms()">Terms of Service</a> and <a href="#" onclick="showPrivacy()">Privacy Policy</a></label>
+                            </div>
+                            
+                            <button type="submit" class="submit-btn">Create Account</button>
+                        </form>
+                        
+                        <div class="social-login">
+                            <p>Or sign up with</p>
+                            <div class="social-icons">
+                                <a href="#" class="social-icon google" onclick="socialLogin('google')">
+                                    <i class="fab fa-google"></i>
+                                </a>
+                                <a href="#" class="social-icon facebook" onclick="socialLogin('facebook')">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="social-icon twitter" onclick="socialLogin('twitter')">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Forgot Password Modal -->
+    <div id="forgotModal" style="display:none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 3000; align-items: center; justify-content: center;">
+        <div style="background: rgba(255, 255, 255, 0.25); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.2); max-width: 400px; margin: 20px; padding: 2rem; border-radius: 15px; animation: slideIn 0.3s ease; box-shadow: 0 20px 60px rgba(0,0,0,0.3);">
+            <h3>Reset Password</h3>
+            <p>Enter your email address and we'll send you a link to reset your password.</p>
+            <input type="email" id="resetEmail" placeholder="Email Address" style="width: 100%; padding: 0.75rem; margin: 1rem 0; border: 2px solid #e5e7eb; border-radius: 10px;">
+            <button onclick="sendResetLink()" style="width: 100%; padding: 0.75rem; background: #09cc8b; color: white; border: none; border-radius: 10px; cursor: pointer;">Send Reset Link</button>
+            <button onclick="closeForgotModal()" style="width: 100%; margin-top: 0.5rem; padding: 0.75rem; background: #e5e7eb; border: none; border-radius: 10px; cursor: pointer;">Cancel</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Haven Home Solutions</h3>
+                    <p>Your trusted partner in finding the perfect home</p>
+                    <p><a href="https://www.havenhomesolutions.com" target="_blank" rel="noopener">www.havenhomesolutions.com</a></p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="properties.html">Properties</a></li>
+                        <li><a href="featured-properties.html">Featured</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Uttara, Dhaka 1230, Bangladesh</p>
+                    <p><i class="fas fa-phone"></i> +8801819453547</p>
+                    <p><i class="fas fa-envelope"></i> info@havenhomesolutions.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Haven Home Solutions. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // API Configuration
+        const API_URL = 'http://localhost:5000/api';
+        
+        // Toggle password visibility
+        function togglePassword(inputId, element) {
+            const input = document.getElementById(inputId);
+            if (input.type === 'password') {
+                input.type = 'text';
+                element.classList.remove('fa-eye');
+                element.classList.add('fa-eye-slash');
+            } else {
+                input.type = 'password';
+                element.classList.remove('fa-eye-slash');
+                element.classList.add('fa-eye');
+            }
+        }
+        
+        // Password strength checker
+        function checkPasswordStrength(password) {
+            let strength = 0;
+            let message = '';
+            let color = '#e5e7eb';
+            
+            if (password.length >= 6) strength++;
+            if (password.length >= 10) strength++;
+            if (password.match(/[a-z]/) && password.match(/[A-Z]/)) strength++;
+            if (password.match(/\d/)) strength++;
+            if (password.match(/[^a-zA-Z\d]/)) strength++;
+            
+            const bar = document.getElementById('strengthBar');
+            const text = document.getElementById('strengthText');
+            
+            switch(strength) {
+                case 0:
+                case 1:
+                    message = 'Weak';
+                    color = '#ef4444';
+                    break;
+                case 2:
+                    message = 'Fair';
+                    color = '#f59e0b';
+                    break;
+                case 3:
+                    message = 'Good';
+                    color = '#10b981';
+                    break;
+                case 4:
+                case 5:
+                    message = 'Strong';
+                    color = '#059669';
+                    break;
+            }
+            
+            if (password.length === 0) {
+                message = '';
+                color = '#e5e7eb';
+            }
+            
+            bar.style.width = `${(strength / 5) * 100}%`;
+            bar.style.background = color;
+            text.textContent = message;
+            text.style.color = color;
+        }
+        
+        // Show alert message
+        function showAlert(message, type, containerId) {
+            const container = document.getElementById(containerId);
+            const alertDiv = document.createElement('div');
+            alertDiv.className = `alert alert-${type}`;
+            alertDiv.innerHTML = message;
+            
+            // Remove existing alerts
+            const existingAlerts = container.querySelectorAll('.alert');
+            existingAlerts.forEach(alert => alert.remove());
+            
+            container.insertBefore(alertDiv, container.firstChild);
+            
+            setTimeout(() => {
+                alertDiv.remove();
+            }, 5000);
+        }
+        
+        // Validate email
+        function validateEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+        
+        // Login form submission
+        document.getElementById('login')?.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            const rememberMe = document.getElementById('rememberMe').checked;
+            
+            // Reset errors
+            document.querySelectorAll('#loginForm .error-message').forEach(el => el.classList.remove('show'));
+            
+            let isValid = true;
+            
+            if (!validateEmail(email)) {
+                document.getElementById('loginEmailError').classList.add('show');
+                isValid = false;
+            }
+            
+            if (!password) {
+                document.getElementById('loginPasswordError').classList.add('show');
+                isValid = false;
+            }
+            
+            if (!isValid) return;
+            
+            // Show loading state
+            const submitBtn = e.target.querySelector('.submit-btn');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<span class="spinner"></span> Logging in...';
+            submitBtn.disabled = true;
+            
+            try {
+                // Attempt to login with backend
+                const response = await fetch(`${API_URL}/auth/login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    
+                    // Store token and user data
+                    localStorage.setItem('token', data.token);
+                    localStorage.setItem('user', JSON.stringify(data.user));
+                    
+                    if (rememberMe) {
+                        localStorage.setItem('rememberMe', 'true');
+                    }
+                    
+                    showAlert('Login successful! Redirecting...', 'success', 'loginForm');
+                    
+                    // Redirect based on user role
+                    setTimeout(() => {
+                        if (data.user.role === 'admin') {
+                            window.location.href = 'admin-dashboard.html';
+                        } else {
+                            window.location.href = 'index.html';
+                        }
+                    }, 1500);
+                } else {
+                    const error = await response.json();
+                    showAlert(error.message || 'Invalid email or password', 'error', 'loginForm');
+                }
+            } catch (error) {
+                // Demo mode - simulate successful login
+                console.log('Backend not available, using demo mode');
+                
+                // Demo credentials check
+                if (email === 'demo@havenhomesolutions.com' && password === 'demo123') {
+                    const demoUser = {
+                        id: 'demo123',
+                        name: 'Demo User',
+                        email: email,
+                        role: 'user'
+                    };
+                    localStorage.setItem('token', 'demo-token-123');
+                    localStorage.setItem('user', JSON.stringify(demoUser));
+                    
+                    showAlert('Demo login successful! Redirecting...', 'success', 'loginForm');
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 1500);
+                } else if (email === 'admin@havenhomesolutions.com' && password === 'admin123') {
+                    const adminUser = {
+                        id: 'admin123',
+                        name: 'Admin User',
+                        email: email,
+                        role: 'admin'
+                    };
+                    localStorage.setItem('token', 'admin-token-123');
+                    localStorage.setItem('user', JSON.stringify(adminUser));
+                    
+                    showAlert('Admin login successful! Redirecting...', 'success', 'loginForm');
+                    setTimeout(() => {
+                        window.location.href = 'admin-dashboard.html';
+                    }, 1500);
+                } else {
+                    showAlert('Invalid email or password. Demo: demo@havenhomesolutions.com / demo123', 'error', 'loginForm');
+                }
+            } finally {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }
+        });
+        
+        // Register form submission
+        document.getElementById('register')?.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const fullName = document.getElementById('regName').value;
+            const nameParts = fullName.trim().split(' ');
+            const firstName = nameParts[0] || '';
+            const lastName = nameParts.slice(1).join(' ') || '';
+            const email = document.getElementById('regEmail').value;
+            const phone = document.getElementById('regPhone').value;
+            const password = document.getElementById('regPassword').value;
+            const confirmPassword = document.getElementById('regConfirmPassword').value;
+            const termsAccepted = document.getElementById('termsCheckbox').checked;
+            
+            // Reset errors
+            document.querySelectorAll('#registerForm .error-message').forEach(el => el.classList.remove('show'));
+            
+            let isValid = true;
+            
+            if (!fullName) {
+                document.getElementById('regNameError').classList.add('show');
+                isValid = false;
+            }
+            
+            if (!validateEmail(email)) {
+                document.getElementById('regEmailError').classList.add('show');
+                isValid = false;
+            }
+            
+            if (password.length < 6) {
+                document.getElementById('regPasswordError').classList.add('show');
+                isValid = false;
+            }
+            
+            if (password !== confirmPassword) {
+                document.getElementById('regConfirmError').classList.add('show');
+                isValid = false;
+            }
+            
+            if (!termsAccepted) {
+                showAlert('Please accept the Terms of Service and Privacy Policy', 'error', 'registerForm');
+                isValid = false;
+            }
+            
+            if (!isValid) return;
+            
+            // Show loading state
+            const submitBtn = e.target.querySelector('.submit-btn');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<span class="spinner"></span> Creating account...';
+            submitBtn.disabled = true;
+            
+            try {
+                // Attempt to register with backend
+                const response = await fetch(`${API_URL}/auth/register`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password, firstName, lastName, phone })
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    
+                    // Store token and user data
+                    localStorage.setItem('token', data.token);
+                    localStorage.setItem('user', JSON.stringify(data.user));
+                    
+                    showAlert('Registration successful! Logging you in...', 'success', 'registerForm');
+                    
+                    // Redirect to home page after 2 seconds
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 2000);
+                } else {
+                    const error = await response.json();
+                    showAlert(error.message || 'Registration failed', 'error', 'registerForm');
+                }
+            } catch (error) {
+                // Demo mode - simulate successful registration
+                console.log('Backend not available, using demo mode');
+                showAlert('Demo registration successful! You can now login.', 'success', 'registerForm');
+                
+                setTimeout(() => {
+                    document.querySelector('.tab-btn[data-form="login"]').click();
+                    document.getElementById('loginEmail').value = email;
+                }, 2000);
+            } finally {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }
+        });
+        
+        // Tab switching
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const formType = btn.dataset.form;
+                
+                // Update active tab
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                // Show corresponding form
+                document.querySelectorAll('.form-container').forEach(form => form.classList.remove('active'));
+                document.getElementById(`${formType}Form`).classList.add('active');
+            });
+        });
+        
+        // Password strength checker
+        document.getElementById('regPassword')?.addEventListener('input', (e) => {
+            checkPasswordStrength(e.target.value);
+        });
+        
+        // Real-time password match check
+        document.getElementById('regConfirmPassword')?.addEventListener('input', (e) => {
+            const password = document.getElementById('regPassword').value;
+            const confirmPassword = e.target.value;
+            const errorEl = document.getElementById('regConfirmError');
+            
+            if (password !== confirmPassword && confirmPassword.length > 0) {
+                errorEl.classList.add('show');
+            } else {
+                errorEl.classList.remove('show');
+            }
+        });
+        
+        // Forgot password modal
+        function showForgotPassword() {
+            document.getElementById('forgotModal').style.display = 'flex';
+        }
+        
+        function closeForgotModal() {
+            document.getElementById('forgotModal').style.display = 'none';
+        }
+        
+        function sendResetLink() {
+            const email = document.getElementById('resetEmail').value;
+            if (!validateEmail(email)) {
+                alert('Please enter a valid email address');
+                return;
+            }
+            
+            // Simulate sending reset link
+            alert(`Password reset link has been sent to ${email}`);
+            closeForgotModal();
+        }
+        
+        // Social login simulation
+        function socialLogin(provider) {
+            showAlert(`Connecting with ${provider}...`, 'info', document.querySelector('.form-container.active').id);
+            
+            setTimeout(() => {
+                const demoUser = {
+                    id: 'social123',
+                    name: `${provider} User`,
+                    email: `user@${provider}.com`,
+                    role: 'user'
+                };
+                localStorage.setItem('token', 'social-token-123');
+                localStorage.setItem('user', JSON.stringify(demoUser));
+                window.location.href = 'index.html';
+            }, 1500);
+        }
+        
+        function showTerms() {
+            alert('Terms of Service:\n1. Use of the platform is subject to our terms.\n2. All property listings are verified.\n3. User data is protected by privacy laws.\n\nFull terms available on request.');
+        }
+        
+        function showPrivacy() {
+            alert('Privacy Policy:\nWe value your privacy. Your personal information is secure and will never be shared with third parties without your consent.');
+        }
+        
+        // Check if user is already logged in
+        function checkAuth() {
+            const token = localStorage.getItem('token');
+            const user = JSON.parse(localStorage.getItem('user'));
+            
+            if (token && user) {
+                // Redirect to appropriate page
+                if (window.location.pathname.includes('admin-login.html')) {
+                    if (user.role === 'admin') {
+                        window.location.href = 'admin-dashboard.html';
+                    } else {
+                        window.location.href = 'index.html';
+                    }
+                }
+            }
+        }
+        
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', () => {
+            checkAuth();
+            
+            // Add animation to auth wrapper
+            const wrapper = document.querySelector('.auth-wrapper');
+            if (wrapper) {
+                wrapper.style.opacity = '0';
+                wrapper.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    wrapper.style.transition = 'all 0.5s ease';
+                    wrapper.style.opacity = '1';
+                    wrapper.style.transform = 'translateY(0)';
+                }, 100);
+            }
+        });
+        
+        // Mobile menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        hamburger?.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+        
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('forgotModal');
+            if (event.target === modal) {
+                closeForgotModal();
+            }
+        }
+    </script>
+</body>
+</html>

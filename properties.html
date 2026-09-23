@@ -1,0 +1,1638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Browse property listings from apartments to villas across Bangladesh with HavenHome Solutions.">
+    <meta name="keywords" content="HavenHome Solutions, properties, real estate listings, Bangladesh homes, apartments, villas">
+    <meta name="author" content="HavenHome Solutions">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.havenhomesolutions.com/properties.html">
+    <meta property="og:title" content="Properties — HavenHome Solutions">
+    <meta property="og:description" content="Search properties in Bangladesh with HavenHome Solutions, featuring top homes, apartments, and investment listings.">
+    <meta property="og:url" content="https://www.havenhomesolutions.com/properties.html">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1920&q=80">
+    <title>Properties -HavenHome Solutions </title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+       
+        .properties-page {
+            margin-top: 80px;
+            padding: 2rem 0;
+            background:rgba(245, 238, 238, 0.918);;
+            min-height: calc(100vh - 80px);
+            
+        }
+        
+        .properties-layout {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 2rem;
+        }
+        
+        
+        .filters-sidebar {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+        
+        .filter-section {
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 1rem;
+        }
+        
+        .filter-section h3 {
+            margin-bottom: 1rem;
+            color: #333;
+            font-size: 1.1rem;
+        }
+        
+        .filter-option {
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .filter-option input[type="checkbox"],
+        .filter-option input[type="radio"] {
+            margin-right: 0.5rem;
+            cursor: pointer;
+        }
+        
+        .filter-option label {
+            cursor: pointer;
+            color: #666;
+        }
+        
+        .price-range {
+            display: flex;
+            gap: 0.75rem;
+            align-items: flex-end;
+        }
+        
+        .location-search-container {
+            display: flex;
+            gap: 0.5rem;
+            width: 100%;
+        }
+        
+        .location-search-container input {
+            flex: 1;
+            padding: 0.5rem 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 0.95rem;
+            color: #333;
+            background: #fff;
+        }
+
+        .location-search-container input::placeholder {
+            color: #999;
+        }
+
+        .filters-sidebar,
+        .filters-sidebar h3,
+        .filters-sidebar label,
+        .filters-sidebar input,
+        .filters-sidebar button {
+            color: #333;
+        }
+        
+        .location-search-btn {
+            padding: 0.5rem 1rem;
+            background: #09cc8b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+        
+        .location-search-btn:hover {
+            background: #07b377;
+        }
+        
+        .price-input-group {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+        
+        .price-input-label {
+            font-size: 0.75rem;
+            color: #999;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .price-range input {
+            width: 100%;
+            padding: 0.5rem 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 0.95rem;
+        }
+        
+        .price-range input::placeholder {
+            color: #bbb;
+        }
+        
+        .filter-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .filter-buttons button {
+            flex: 1;
+            padding: 0.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .apply-filters {
+            background: #09cc8b;
+            color: white;
+        }
+        
+        .reset-filters {
+            background: #d1f2eb;
+            color: #333;
+        }
+        
+        /* Sorting Bar */
+        .sorting-bar {
+            background: white;
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .results-count {
+            color: #666;
+        }
+        
+        .sort-select {
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        /* Properties Grid */
+        .properties-container {
+            min-height: 500px;
+        }
+        
+        .property-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(241, 235, 235, 0.521);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+        
+        .property-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+        
+        .property-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: #09cc8b;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 5px;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+        
+        .property-image-container {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .property-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        
+        .property-card:hover .property-image {
+            transform: scale(1.05);
+        }
+        
+        .property-info {
+            padding: 1.5rem;
+        }
+        
+        .property-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+        
+        .property-price {
+            color: #09cc8b;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0.5rem 0;
+        }
+        
+        .property-location {
+            color: #666;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .property-details {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+            color: #666;
+        }
+        
+        .property-details span {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        
+        .favorite-btn {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: white;
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .favorite-btn i {
+            color: #ff6b6b;
+            font-size: 1.2rem;
+        }
+        
+        .favorite-btn.active {
+            background: #ff6b6b;
+        }
+        
+        .favorite-btn.active i {
+            color: white;
+        }
+        
+        .view-details-btn {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            background: white;
+            color: #09cc8b;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+            transition: background 0.3s;
+        }
+        
+        .view-details-btn:hover {
+            background: #09cc8b;
+            color: white;
+        }
+        
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 3rem;
+        }
+        
+        .page-btn {
+            padding: 0.5rem 1rem;
+            border: 1px solid #ddd;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-radius: 5px;
+        }
+        
+        .page-btn:hover,
+        .page-btn.active {
+            background: #09cc8b;
+            color: white;
+            border-color: #09cc8b;
+        }
+        
+        /* Loading State */
+        .loading {
+            text-align: center;
+            padding: 3rem;
+        }
+        
+        .loading-spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #09cc8b;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 3rem;
+            background: white;
+            border-radius: 10px;
+        }
+        
+        /* Property Details Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            border-radius: 15px;
+            max-width: 800px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            animation: slideUp 0.3s ease-in-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-header {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+        }
+
+        .modal-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            color: #333;
+        }
+
+        .modal-close:hover {
+            background: #f0f0f0;
+            transform: scale(1.1);
+        }
+
+        .modal-body {
+            padding: 2rem;
+        }
+
+        .modal-title {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .modal-price {
+            font-size: 1.8rem;
+            color: #09cc8b;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .modal-location {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #666;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .modal-section {
+            margin-bottom: 2rem;
+        }
+
+        .modal-section h3 {
+            font-size: 1.2rem;
+            color: #333;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+        }
+
+        .modal-features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .feature-item {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            color: #09cc8b;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .feature-label {
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        .modal-description {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .modal-contact-btn {
+            background: #09cc8b;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s;
+        }
+
+        .modal-contact-btn:hover {
+            background: #07b377;
+        }
+
+        .modal-details-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .detail-item {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+        }
+
+        .detail-label {
+            color: #999;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .detail-value {
+            color: #333;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .properties-layout {
+                grid-template-columns: 1fr;
+            }
+            
+            .filters-sidebar {
+                position: static;
+                margin-bottom: 1rem;
+            }
+            
+            .sorting-bar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .modal-content {
+                width: 95%;
+            }
+
+            .modal-features {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-details-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-home"></i>
+                <span>HavenHome Solutions</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="properties.html" class="active">Properties</a></li>
+                <li><a href="agent.html">Agents</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="admin-login.html" class="login-btn">Login/Register</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Properties Page Content -->
+    <div class="properties-page">
+        <div class="container">
+            <div class="properties-layout">
+                <!-- Sidebar Filters -->
+                <aside class="filters-sidebar">
+                    <h3>Filter Properties</h3>
+                    
+                    <div class="filter-section">
+                        <h3>Location</h3>
+                        <div class="location-search-container">
+                            <input type="text" id="locationFilter" placeholder="Enter city or area">
+                            <button class="location-search-btn" onclick="searchByLocation()"><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-section">
+                        <h3>Property Type</h3>
+                        <div class="filter-option">
+                            <input type="checkbox" value="apartment" class="property-type-filter"> 
+                            <label>Apartment</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" value="house" class="property-type-filter"> 
+                            <label>House</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" value="villa" class="property-type-filter"> 
+                            <label>Villa</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" value="land" class="property-type-filter"> 
+                            <label>Land</label>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-section">
+                        <h3>Price Range</h3>
+                        <div class="price-range">
+                            <div class="price-input-group">
+                                <label class="price-input-label">Min</label>
+                                <input type="number" id="minPrice" placeholder="0" step="10000">
+                            </div>
+                            <div class="price-input-group">
+                                <label class="price-input-label">Max</label>
+                                <input type="number" id="maxPrice" placeholder="No limit" step="10000">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-section">
+                        <h3>Bedrooms</h3>
+                        <div class="filter-option">
+                            <input type="radio" name="bedrooms" value=""> <label>Any</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="radio" name="bedrooms" value="1"> <label>1+</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="radio" name="bedrooms" value="2"> <label>2+</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="radio" name="bedrooms" value="3"> <label>3+</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="radio" name="bedrooms" value="4"> <label>4+</label>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-section">
+                        <h3>Bathrooms</h3>
+                        <div class="filter-option">
+                            <input type="radio" name="bathrooms" value=""> <label>Any</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="radio" name="bathrooms" value="1"> <label>1+</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="radio" name="bathrooms" value="2"> <label>2+</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="radio" name="bathrooms" value="3"> <label>3+</label>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-buttons">
+                        <button class="apply-filters" onclick="applyFilters()">Apply Filters</button>
+                        <button class="reset-filters" onclick="resetFilters()">Reset</button>
+                    </div>
+                </aside>
+                
+                <!-- Properties Main Content -->
+                <main>
+                    <div class="sorting-bar">
+                        <div class="results-count" id="resultsCount">Loading properties...</div>
+                        <select id="sortBy" class="sort-select" onchange="applySorting()">
+                            <option value="newest">Newest First</option>
+                            <option value="price-asc">Price: Low to High</option>
+                            <option value="price-desc">Price: High to Low</option>
+                        </select>
+                    </div>
+                    
+                    <div class="properties-container" id="propertiesContainer">
+                        <div class="loading">
+                            <div class="loading-spinner"></div>
+                            <p>Loading properties...</p>
+                        </div>
+                    </div>
+                    
+                    <div class="pagination" id="pagination">
+                        <!-- Pagination will be inserted here -->
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <!-- Property Details Modal -->
+    <div id="propertyModal" class="modal" onclick="closeModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <img id="modalImage" src="" alt="Property" class="modal-image">
+                <button class="modal-close" onclick="closeModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h2 class="modal-title" id="modalTitle"></h2>
+                <div class="modal-price" id="modalPrice"></div>
+                <div class="modal-location">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span id="modalLocation"></span>
+                </div>
+
+                <div class="modal-section">
+                    <h3>Key Features</h3>
+                    <div class="modal-features">
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="fas fa-bed"></i></div>
+                            <div class="feature-value" id="modalBedrooms"></div>
+                            <div class="feature-label">Bedrooms</div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="fas fa-bath"></i></div>
+                            <div class="feature-value" id="modalBathrooms"></div>
+                            <div class="feature-label">Bathrooms</div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="fas fa-vector-square"></i></div>
+                            <div class="feature-value" id="modalSize"></div>
+                            <div class="feature-label">Square Feet</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-section">
+                    <h3>Property Details</h3>
+                    <div class="modal-details-grid">
+                        <div class="detail-item">
+                            <div class="detail-label">Property Type</div>
+                            <div class="detail-value" id="modalType"></div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Year Built</div>
+                            <div class="detail-value" id="modalYear"></div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Status</div>
+                            <div class="detail-value" id="modalStatus"></div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Listed Date</div>
+                            <div class="detail-value" id="modalDate"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-section">
+                    <h3>Description</h3>
+                    <div class="modal-description" id="modalDescription"></div>
+                </div>
+
+                <button class="modal-contact-btn" onclick="contactAgent()">
+                    <i class="fas fa-phone"></i> Contact Agent
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>HavenHome Solutions</h3>
+                    <p>Your trusted partner in finding the perfect home</p>
+                    <p><a href="https://www.havenhomesolutions.com" target="_blank" rel="noopener">www.havenhomesolutions.com</a></p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="properties.html">Properties</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Uttara, Dhaka 1230, Bangladesh</p>
+                    <p><i class="fas fa-phone"></i> +8801819453547</p>
+                    <p><i class="fas fa-envelope"></i> info@havenhomesolutions.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 HavenHome Solutions. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const API_URL = 'http://localhost:5000/api';
+        let currentPage = 1;
+        let totalPages = 1;
+        let currentFilters = {
+            location: '',
+            propertyTypes: [],
+            minPrice: '',
+            maxPrice: '',
+            bedrooms: '',
+            bathrooms: '',
+            sort: 'newest'
+        };
+
+        function normalizeText(value) {
+            return String(value || '').trim().toLowerCase();
+        }
+
+        function filterPropertiesLocally(properties) {
+            return properties.filter(property => {
+                const locationFilter = normalizeText(currentFilters.location);
+                const propertyLocation = normalizeText(property.location);
+                const propertyType = normalizeText(property.propertyType);
+                const bedrooms = Number(property.bedrooms || 0);
+                const bathrooms = Number(property.bathrooms || 0);
+                const price = Number(property.price || 0);
+
+                if (locationFilter && !propertyLocation.includes(locationFilter)) {
+                    return false;
+                }
+
+                if (currentFilters.propertyTypes.length > 0 && !currentFilters.propertyTypes.some(type => type.toLowerCase() === propertyType)) {
+                    return false;
+                }
+
+                if (currentFilters.minPrice && price < Number(currentFilters.minPrice)) {
+                    return false;
+                }
+
+                if (currentFilters.maxPrice && price > Number(currentFilters.maxPrice)) {
+                    return false;
+                }
+
+                if (currentFilters.bedrooms && bedrooms < Number(currentFilters.bedrooms)) {
+                    return false;
+                }
+
+                if (currentFilters.bathrooms && bathrooms < Number(currentFilters.bathrooms)) {
+                    return false;
+                }
+
+                return true;
+            });
+        }
+
+        function paginateProperties(properties, page, limit = 9) {
+            const startIndex = (page - 1) * limit;
+            return properties.slice(startIndex, startIndex + limit);
+        }
+
+        // Load properties with filters
+        async function loadProperties(page = 1) {
+            showLoading();
+            
+            try {
+                // Build query parameters
+                const params = new URLSearchParams();
+                if (currentFilters.location) params.append('location', currentFilters.location);
+                if (currentFilters.propertyTypes.length > 0) {
+                    params.append('propertyType', currentFilters.propertyTypes.join(','));
+                }
+                if (currentFilters.minPrice) params.append('minPrice', currentFilters.minPrice);
+                if (currentFilters.maxPrice) params.append('maxPrice', currentFilters.maxPrice);
+                if (currentFilters.bedrooms) params.append('bedrooms', currentFilters.bedrooms);
+                if (currentFilters.bathrooms) params.append('bathrooms', currentFilters.bathrooms);
+                if (currentFilters.sort) params.append('sort', currentFilters.sort);
+                params.append('page', page);
+                params.append('limit', 9);
+                
+                const response = await fetch(`${API_URL}/properties?${params.toString()}`);
+                const data = await response.json();
+                
+                // Handle API response format
+                let properties = [];
+                let pagination = { totalPages: 1, currentPage: 1, totalProperties: 0 };
+                
+                if (data.properties && Array.isArray(data.properties)) {
+                    // API response format
+                    properties = data.properties;
+                    pagination = data.pagination || pagination;
+                    totalPages = pagination.totalPages || 1;
+                    currentPage = pagination.currentPage || 1;
+                    updateResultsCount(pagination.totalProperties || properties.length);
+                } else if (Array.isArray(data)) {
+                    // Direct array response
+                    properties = filterPropertiesLocally(data);
+                    updateResultsCount(properties.length);
+                } else {
+                    // Fallback to mock data
+                    properties = getMockProperties();
+                    properties = filterPropertiesLocally(properties);
+                    updateResultsCount(properties.length);
+                }
+                
+                // Store properties globally for modal access
+                allProperties = properties;
+                
+                displayProperties(properties);
+                setupPagination(currentPage, totalPages);
+                
+            } catch (error) {
+                console.error('Error loading properties:', error);
+                // Use mock data for demo and apply local filters
+                const mockProperties = filterPropertiesLocally(getMockProperties());
+                allProperties = mockProperties;
+                const pagedProperties = paginateProperties(mockProperties, page);
+                displayProperties(pagedProperties);
+                updateResultsCount(mockProperties.length);
+                setupPagination(page, Math.max(1, Math.ceil(mockProperties.length / 9)));
+            }
+        }
+        
+        // Display properties
+        function displayProperties(properties) {
+            const container = document.getElementById('propertiesContainer');
+            
+            if (!properties || properties.length === 0) {
+                container.innerHTML = `
+                    <div class="no-results">
+                        <i class="fas fa-search" style="font-size: 3rem; color: #ccc; margin-bottom: 1rem;"></i>
+                        <h3>No Properties Found</h3>
+                        <p>Try adjusting your filters to find more properties.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            container.innerHTML = `
+                <div class="properties-grid">
+                    ${properties.map(property => `
+                        <div class="property-card" onclick="viewPropertyDetails('${property.id || property._id}')">
+                            <div class="property-image-container">
+                                <img src="${property.images?.[0] || 'https://images.unsplash.com/photo-1560518883-ce09059eeffc?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80'}" alt="${property.title}" class="property-image">
+                                <button class="favorite-btn" onclick="toggleFavorite(event, '${property.id || property._id}')">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                                <div class="property-badge">${property.propertyType || 'Property'}</div>
+                            </div>
+                            <div class="property-info">
+                                <h3 class="property-title">${property.title}</h3>
+                                <div class="property-price">TK ${property.price ? property.price.toLocaleString() : 'N/A'}</div>
+                                <div class="property-location">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>${property.location}</span>
+                                </div>
+                                <div class="property-details">
+                                    <span><i class="fas fa-bed"></i> ${property.bedrooms || 0} beds</span>
+                                    <span><i class="fas fa-bath"></i> ${property.bathrooms || 0} baths</span>
+                                    <span><i class="fas fa-vector-square"></i> ${property.size || 0} sqft</span>
+                                </div>
+                                <button class="view-details-btn" onclick="viewPropertyDetails('${property.id || property._id}')">
+                                    View Details
+                                </button>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        // Apply filters
+        function applyFilters() {
+            // Get location
+            currentFilters.location = document.getElementById('locationFilter').value;
+            
+            // Get property types
+            const typeCheckboxes = document.querySelectorAll('.property-type-filter:checked');
+            currentFilters.propertyTypes = Array.from(typeCheckboxes).map(cb => cb.value);
+            
+            // Get price range
+            currentFilters.minPrice = document.getElementById('minPrice').value;
+            currentFilters.maxPrice = document.getElementById('maxPrice').value;
+            
+            // Get bedrooms
+            const selectedBedroom = document.querySelector('input[name="bedrooms"]:checked');
+            currentFilters.bedrooms = selectedBedroom ? selectedBedroom.value : '';
+            
+            // Get bathrooms
+            const selectedBathroom = document.querySelector('input[name="bathrooms"]:checked');
+            currentFilters.bathrooms = selectedBathroom ? selectedBathroom.value : '';
+            
+            currentPage = 1;
+            loadProperties(currentPage);
+        }
+        
+        // Search by location
+        function searchByLocation() {
+            currentFilters.location = document.getElementById('locationFilter').value;
+            currentPage = 1;
+            loadProperties(currentPage);
+        }
+        
+        // Reset all filters
+        function resetFilters() {
+            document.getElementById('locationFilter').value = '';
+            document.querySelectorAll('.property-type-filter').forEach(cb => cb.checked = false);
+            document.getElementById('minPrice').value = '';
+            document.getElementById('maxPrice').value = '';
+            document.querySelectorAll('input[name="bedrooms"]').forEach(radio => radio.checked = false);
+            document.querySelectorAll('input[name="bathrooms"]').forEach(radio => radio.checked = false);
+            
+            currentFilters = {
+                location: '',
+                propertyTypes: [],
+                minPrice: '',
+                maxPrice: '',
+                bedrooms: '',
+                bathrooms: '',
+                sort: currentFilters.sort
+            };
+            
+            currentPage = 1;
+            loadProperties(currentPage);
+        }
+        
+        // Apply sorting
+        function applySorting() {
+            currentFilters.sort = document.getElementById('sortBy').value;
+            currentPage = 1;
+            loadProperties(currentPage);
+        }
+        
+        // Update results count
+        function updateResultsCount(count) {
+            const resultsCount = document.getElementById('resultsCount');
+            resultsCount.textContent = `Showing ${count} properties`;
+        }
+        
+        // Get filtered properties count
+        // Setup pagination
+        function setupPagination(currentPage, total) {
+            const paginationContainer = document.getElementById('pagination');
+            totalPages = total;
+            
+            if (totalPages <= 1) {
+                paginationContainer.innerHTML = '';
+                return;
+            }
+            
+            let paginationHtml = '';
+            for (let i = 1; i <= Math.min(totalPages, 5); i++) {
+                paginationHtml += `
+                    <button class="page-btn ${i === currentPage ? 'active' : ''}" onclick="goToPage(${i})">
+                        ${i}
+                    </button>
+                `;
+            }
+            
+            paginationContainer.innerHTML = paginationHtml;
+        }
+        
+        function goToPage(page) {
+            currentPage = page;
+            loadProperties(currentPage);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        let allProperties = [];
+        
+        function viewPropertyDetails(propertyId) {
+            const property = allProperties.find(p => p.id == propertyId || p._id == propertyId);
+            
+            if (!property) {
+                alert('Property not found');
+                return;
+            }
+            
+            // Populate modal with property data
+            document.getElementById('modalTitle').textContent = property.title;
+            document.getElementById('modalPrice').textContent = `TK ${property.price.toLocaleString()}`;
+            document.getElementById('modalLocation').textContent = property.location;
+            document.getElementById('modalImage').src = property.images?.[0] || 'https://images.unsplash.com/photo-1560518883-ce09059eeffc?ixlib=rb-4.0.3';
+            document.getElementById('modalBedrooms').textContent = property.bedrooms || 'N/A';
+            document.getElementById('modalBathrooms').textContent = property.bathrooms || 'N/A';
+            document.getElementById('modalSize').textContent = (property.size || 'N/A') + (property.size ? ' sqft' : '');
+            document.getElementById('modalType').textContent = property.propertyType || 'N/A';
+            document.getElementById('modalYear').textContent = property.yearBuilt || '2024';
+            document.getElementById('modalStatus').textContent = property.status || 'Available';
+            document.getElementById('modalDate').textContent = property.listedDate || new Date().toLocaleDateString();
+            document.getElementById('modalDescription').textContent = property.description || 'Beautiful property with modern amenities and great location. Perfect for families or investors.';
+            
+            // Show modal
+            document.getElementById('propertyModal').classList.add('active');
+        }
+        
+        function closeModal(event) {
+            // Close if clicking outside modal content or on close button
+            if (event && event.target.id !== 'propertyModal') return;
+            document.getElementById('propertyModal').classList.remove('active');
+        }
+        
+        function contactAgent() {
+            alert('Thank you for your interest! An agent will contact you shortly.');
+        }
+        
+        function toggleFavorite(event, propertyId) {
+            event.stopPropagation();
+            const btn = event.currentTarget;
+            const icon = btn.querySelector('i');
+            
+            if (icon.classList.contains('far')) {
+                icon.classList.remove('far');
+                icon.classList.add('fas');
+                btn.classList.add('active');
+                // Save to localStorage
+                let favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+                if (!favorites.includes(propertyId)) {
+                    favorites.push(propertyId);
+                    localStorage.setItem('favorites', JSON.stringify(favorites));
+                }
+            } else {
+                icon.classList.remove('fas');
+                icon.classList.add('far');
+                btn.classList.remove('active');
+                // Remove from localStorage
+                let favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+                favorites = favorites.filter(id => id !== propertyId);
+                localStorage.setItem('favorites', JSON.stringify(favorites));
+            }
+        }
+        
+        function showLoading() {
+            const container = document.getElementById('propertiesContainer');
+            container.innerHTML = `
+                <div class="loading">
+                    <div class="loading-spinner"></div>
+                    <p>Loading properties...</p>
+                </div>
+            `;
+        }
+        
+        // Mock data for demonstration
+        function getMockProperties() {
+            return [
+                {
+                    id: 1,
+                    title: "Modern Downtown Apartment",
+                    price: 1000000,
+                    location: "Dhaka,Bangladesh",
+                    bedrooms: 2,
+                    bathrooms: 2,
+                    size: 1200,
+                    propertyType: "apartment",
+                    images: ["https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3"]
+                },
+                {
+                    id: 2,
+                    title: "Luxury Villa with Pool",
+                    price: 3200000,
+                    location: "Banani Dhaka , Bangladesh",
+                    bedrooms: 4,
+                    bathrooms: 3,
+                    size: 3500,
+                    propertyType: "villa",
+                    images: ["https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3"]
+                },
+                {
+                    id: 3,
+                    title: "Cozy Family House",
+                    price: 2500000,
+                    location: "faydabad,chittagong, Bangladesh",
+                    bedrooms: 3,
+                    bathrooms: 2,
+                    size: 1800,
+                    propertyType: "house",
+                    images: ["https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-4.0.3"]
+                },
+                {
+                    id: 4,
+                    title: "Beachfront Condo",
+                    price: 5000000,
+                    location: "cox's bazar, Bangladesh",
+                    bedrooms: 2,
+                    bathrooms: 2,
+                    size: 1100,
+                    propertyType: "apartment",
+                    images: ["https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3"]
+                },
+                {
+                    id: 5,
+                    title: "Suburban Dream Home",
+                    price: 30000000,
+                    location: "Uttara, Dhaka, Bangladesh",
+                    bedrooms: 4,
+                    bathrooms: 3,
+                    size: 2800,
+                    propertyType: "house",
+                    images: ["https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?ixlib=rb-4.0.3"]
+                },
+                {
+                    id: 6,
+                    title: "Penthouse with View",
+                    price: 20000000,
+                    location: "Tongi, Dhaka, Bangladesh",
+                    bedrooms: 3,
+                    bathrooms: 3,
+                    size: 2400,
+                    propertyType: "apartment",
+                    images: ['https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3']
+                },
+                {
+                    id: 7,
+                    title: "Contemporary Townhouse",
+                    price: 1500000,
+                    location: "Mirpur, Dhaka, Bangladesh",
+                    bedrooms: 2,
+                    bathrooms: 2,
+                    size: 900,
+                    propertyType: "house",
+                    images: ["https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?ixlib=rb-4.0.3"]
+                },
+                {
+                    id: 8,
+                    title: "Spacious Studio Apartment",
+                    price: 750000,
+                    location: "Gabothola, Dhaka, Bangladesh",
+                    bedrooms: 1,
+                    bathrooms: 1,
+                    size: 600,
+                    propertyType: "apartment",
+                    images: ["https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3"]
+                },
+                {
+                    id: 9,
+                    title: "Luxury Estate Home",
+                    price: 45000000,
+                    location: "Gulshan, Dhaka, Bangladesh",
+                    bedrooms: 5,
+                    bathrooms: 4,
+                    size: 4200,
+                    propertyType: "villa",
+                    images: ["https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-4.0.3"]
+                },
+                {
+                    id: 10,
+                    title: "Charming Cottage",
+                    price: 1200000,
+                    location: "Sylhet, Bangladesh",
+                    bedrooms: 2,
+                    bathrooms: 1,
+                    size: 800,
+                    propertyType: "house",
+                    images: ["https://images.unsplash.com/photo-1475855581690-80accde3ae2b?ixlib=rb-4.0.3"]
+                },
+                {
+                    id: 11,
+                    title: "Riverside Condo",
+                    price: 2800000,
+                    location: "Kawran Bazar, Dhaka, Bangladesh",
+                    bedrooms: 3,
+                    bathrooms: 2,
+                    size: 1600,
+                    propertyType: "apartment",
+                    images: ["https://images.unsplash.com/photo-1523217582562-09d0def993a6?ixlib=rb-4.0.3"]
+                },
+                {
+                    id: 12,
+                    title: "Modern Business Plaza",
+                    price: 5500000,
+                    location: "Motijheel, Dhaka, Bangladesh",
+                    bedrooms: 1,
+                    bathrooms: 1,
+                    size: 1400,
+                    propertyType: "apartment",
+                    images: ["https://images.unsplash.com/photo-1486325212027-8081e485255e?ixlib=rb-4.0.3"]
+                },
+                {
+                    id: 13,
+                    title: "Elegant Garden House",
+                    price: 2200000,
+                    location: "Savar, Dhaka, Bangladesh",
+                    bedrooms: 3,
+                    bathrooms: 2,
+                    size: 2000,
+                    propertyType: "house",
+                    images: ["https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3"]
+                },
+                {
+                    id: 14,
+                    title: "Premium Residential Complex",
+                    price: 3500000,
+                    location: "Baridhara, Dhaka, Bangladesh",
+                    bedrooms: 3,
+                    bathrooms: 2,
+                    size: 1700,
+                    propertyType: "apartment",
+                    images: ["https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?ixlib=rb-4.0.3"]
+                },
+                {
+                    id: 15,
+                    title: "Spacious Family Villa",
+                    price: 42000000,
+                    location: "Dhanmondi, Dhaka, Bangladesh",
+                    bedrooms: 5,
+                    bathrooms: 4,
+                    size: 4500,
+                    propertyType: "villa",
+                    images: ["https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?ixlib=rb-4.0.3"]
+                },
+                {
+                    id: 16,
+                    title: "Cozy Apartment in City Center",
+                    price: 1100000,
+                    location: "Banani, Dhaka, Bangladesh",
+                    bedrooms: 2,
+                    bathrooms: 1,
+                    size: 950,
+                    propertyType: "apartment",
+                    images: ["https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?ixlib=rb-4.0.3"]
+                },
+                {
+                    id: 17,
+                    title: "Waterfront Estate",
+                    price: 5800000,
+                    location: "Narayanganj, Bangladesh",
+                    bedrooms: 4,
+                    bathrooms: 3,
+                    size: 3200,
+                    propertyType: "villa",
+                    images: ["https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?ixlib=rb-4.0.3"]
+                },
+                {
+                    id: 19,
+                    title: "Historic Colonial House",
+                    price: 2600000,
+                    location: "Old Dhaka, Bangladesh",
+                    bedrooms: 4,
+                    bathrooms: 3,
+                    size: 2200,
+                    propertyType: "house",
+                    images: ["https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-4.0.3"]
+                },
+                {
+                    id: 20,
+                    title: "Skyrise Penthouse Apartment",
+                    price: 25000000,
+                    location: "Banani, Dhaka, Bangladesh",
+                    bedrooms: 3,
+                    bathrooms: 3,
+                    size: 2600,
+                    propertyType: "apartment",
+                    images: ["https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3"]
+                },
+                {
+                    id: 21,
+                    title: "Contemporary Designer Villa",
+                    price: 48000000,
+                    location: "Banani, Dhaka, Bangladesh",
+                    bedrooms: 5,
+                    bathrooms: 4,
+                    size: 4800,
+                    propertyType: "villa",
+                    images: ["https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3"]
+                },
+                {
+                    id: 22,
+                    title: "Budget-Friendly Apartment",
+                    price: 650000,
+                    location: "Mirpur, Dhaka, Bangladesh",
+                    bedrooms: 1,
+                    bathrooms: 1,
+                    size: 550,
+                    propertyType: "apartment",
+                    images: ["https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3"]
+                },
+                {
+                    id: 23,
+                    title: "Green Living House",
+                    price: 3100000,
+                    location: "Uttara, Dhaka, Bangladesh",
+                    bedrooms: 3,
+                    bathrooms: 2,
+                    size: 1900,
+                    propertyType: "house",
+                    images: ["https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3"]
+                },
+                {
+                    id: 24,
+                    title: "Luxury High-rise Condo",
+                    price: 4200000,
+                    location: "Gulshan, Dhaka, Bangladesh",
+                    bedrooms: 2,
+                    bathrooms: 2,
+                    size: 1500,
+                    propertyType: "apartment",
+                    images: ["https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3"]
+                },
+                {
+                    id: 25,
+                    title: "Spacious Family Compound",
+                    price: 5200000,
+                    location: "Dhanmondi, Dhaka, Bangladesh",
+                    bedrooms: 4,
+                    bathrooms: 3,
+                    size: 3000,
+                    propertyType: "house",
+                    images: ["https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3"]
+                },
+                {
+                    id: 26,
+                    title: "Executive Furnished Apartment",
+                    price: 1600000,
+                    location: "Kawran Bazar, Dhaka, Bangladesh",
+                    bedrooms: 2,
+                    bathrooms: 2,
+                    size: 1050,
+                    propertyType: "apartment",
+                    images: ["https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?ixlib=rb-4.0.3"]
+                },
+                {
+                    id: 27,
+                    title: "Heritage Mansion",
+                    price: 38000000,
+                    location: "Baridhara, Dhaka, Bangladesh",
+                    bedrooms: 6,
+                    bathrooms: 5,
+                    size: 5000,
+                    propertyType: "villa",
+                    images: ["https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-4.0.3"]
+                },
+                {
+                    id: 28,
+                    title: "Eco-Friendly Smart Home",
+                    price: 2900000,
+                    location: "Savar, Dhaka, Bangladesh",
+                    bedrooms: 3,
+                    bathrooms: 2,
+                    size: 1750,
+                    propertyType: "house",
+                    images: ["https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?ixlib=rb-4.0.3"]
+                },
+                {
+                    id: 29,
+                    title: "Downtown Loft Studio",
+                    price: 1400000,
+                    location: "Motijheel, Dhaka, Bangladesh",
+                    bedrooms: 1,
+                    bathrooms: 1,
+                    size: 700,
+                    propertyType: "apartment",
+                    images: ["https://images.unsplash.com/photo-1493857671505-72967e2e2760?ixlib=rb-4.0.3"]
+                },
+                {
+                    id: 30,
+                    title: "Gated Community Villa",
+                    price: 35000000,
+                    location: "Gulshan, Dhaka, Bangladesh",
+                    bedrooms: 5,
+                    bathrooms: 4,
+                    size: 4100,
+                    propertyType: "villa",
+                    images: ["https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?ixlib=rb-4.0.3"]
+                },
+                {
+                    id: 31,
+                    title: "Modern Townhouse Development",
+                    price: 1700000,
+                    location: "Tongi, Dhaka, Bangladesh",
+                    bedrooms: 2,
+                    bathrooms: 2,
+                    size: 950,
+                    propertyType: "house",
+                    images: ["https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?ixlib=rb-4.0.3"]
+                },
+                {
+                    id: 32,
+                    title: "Premium Apartment Complex",
+                    price: 3800000,
+                    location: "Banani, Dhaka, Bangladesh",
+                    bedrooms: 3,
+                    bathrooms: 2,
+                    size: 1800,
+                    propertyType: "apartment",
+                    images: ["https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3"]
+                },
+                {
+                    id: 33,
+                    title: "Riverside Luxury Villa",
+                    price: 6200000,
+                    location: "Narayanganj, Bangladesh",
+                    bedrooms: 4,
+                    bathrooms: 3,
+                    size: 3400,
+                    propertyType: "villa",
+                    images: ["https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?ixlib=rb-4.0.3"]
+                }
+            ];
+        }
+        
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', () => {
+            // Get URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('location')) {
+                const location = urlParams.get('location');
+                document.getElementById('locationFilter').value = location;
+                currentFilters.location = location;
+            }
+            if (urlParams.has('propertyType')) {
+                const types = urlParams.get('propertyType').split(',');
+                document.querySelectorAll('.property-type-filter').forEach(cb => {
+                    if (types.includes(cb.value)) cb.checked = true;
+                });
+                currentFilters.propertyTypes = types;
+            }
+            if (urlParams.has('minPrice')) {
+                const minPrice = urlParams.get('minPrice');
+                document.getElementById('minPrice').value = minPrice;
+                currentFilters.minPrice = minPrice;
+            }
+            if (urlParams.has('maxPrice')) {
+                const maxPrice = urlParams.get('maxPrice');
+                document.getElementById('maxPrice').value = maxPrice;
+                currentFilters.maxPrice = maxPrice;
+            }
+            if (urlParams.has('bedrooms')) {
+                const bedrooms = urlParams.get('bedrooms');
+                const radio = document.querySelector(`input[name="bedrooms"][value="${bedrooms}"]`);
+                if (radio) radio.checked = true;
+                currentFilters.bedrooms = bedrooms;
+            }
+            if (urlParams.has('bathrooms')) {
+                const bathrooms = urlParams.get('bathrooms');
+                const radio = document.querySelector(`input[name="bathrooms"][value="${bathrooms}"]`);
+                if (radio) radio.checked = true;
+                currentFilters.bathrooms = bathrooms;
+            }
+            if (urlParams.has('sort')) {
+                currentFilters.sort = urlParams.get('sort');
+            }
+            
+            loadProperties();
+        });
+        
+        // Location search event listeners
+        document.getElementById('locationFilter').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                searchByLocation();
+            }
+        });
+        
+        // Modal event listeners
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+        
+        // Mobile menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        hamburger?.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
